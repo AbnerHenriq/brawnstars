@@ -24,6 +24,12 @@ if response.status_code == 200:
     # Close connection
     con.close()
 
+    # Save player_tags
+    player_tags = df['tag'].tolist()
+    with open('requests/utils/player_tags.txt', 'w') as f:
+        for tag in player_tags:
+            f.write(f"{tag}\n")
+
 else:
     print(f'Erro na requisição: {response.status_code}')
     print(response.text)
