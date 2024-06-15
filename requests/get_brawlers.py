@@ -1,4 +1,5 @@
 import requests 
+import pandas as pd
 
 url = 'https://api.brawlstars.com/v1/brawlers'
 headers = { 
@@ -9,7 +10,8 @@ response = requests.get(url, headers=headers)
 
 if response.status_code == 200:
     data = response.json()
-    print(data)
+    df = pd.DataFrame(data["items"])
+    print(df)
 else:
     print(f'Erro na requisição: {response.status_code}')
     print(response.text)
